@@ -91,6 +91,12 @@ func main() {
 	} else {
 		fmt.Println("Division of 10 by 2 is:", divisionResult, "with a remainder of:", remainder)
 	}
+
+	// arrays sclices and maps usuage
+
+	// arrays : fixed length, same type elements, contiguous memory allocation
+	var intArray [5]int32 = [5]int32{1, 2, 3, 4, 5}
+	fmt.Println("Integer Array:", intArray)
 }
 
 // The divide function handles division and returns an error if division by zero is attempted
