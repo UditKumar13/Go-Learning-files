@@ -1,9 +1,31 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"unicode/utf8"
 )
+
+func printMe(printValue string) {
+	fmt.Println(printValue)
+}
+
+func calculate(a int, b int) (int, int) {
+	var sum int
+	sum = a + b
+	multiply := a * b
+	return sum, multiply
+}
+
+func divide(a int, b int) (float64, int) {
+	var error error
+	if b == 0 {
+		error = errors.New("division by zero is not allowed")
+		fmt.Println(error)
+		return 0, 0 // Return zero values if division by zero
+	}
+	return float64(a) / float64(b), a % b
+}
 
 func main() {
 	fmt.Println("Hello World!")
@@ -45,4 +67,21 @@ func main() {
 	var2 := "Udit is a software developer"
 	fmt.Println("var1:", var1, "var2:", var2)
 
+	// creating const
+
+	const myConst string = "This is a constant string"
+	fmt.Println("Constant value:", myConst)
+	// myConst = "This will not work" // Uncommenting this line will cause a compilation error because constants cannot be reassigned
+
+	var printValue string = "This is a print value from a parameteric function"
+	printMe(printValue) // Calling the function with a string argument
+
+	var sum, multipart int = calculate(5, 10) // Calling the function with two integers
+	fmt.Println("Sum of 5 and 10 is:", sum)
+	fmt.Println("Multiplication of 5 and 10 is:", multipart)
+	fmt.Printf("Sum of 5 and 10 is %v and Multiplication is %v\n", sum, multipart)
+
+	// Division function
+	divisionResult, remainder := divide(10, 2)
+	fmt.Printf("Division of 10 by 2 is: %.2f with a remainder of %d\n", divisionResult, remainder)
 }
