@@ -33,4 +33,16 @@ func main() {
 	str2 := " How are you?"
 	fmt.Println("Concatenated string:", str+str2)
 
+	var myBoolean bool = true
+	fmt.Println("Boolean value:", myBoolean)
+	var myRune rune = 'A'
+	fmt.Println("Rune value:", myRune)
+	fmt.Println("Rune as string:", string(myRune))
+
+	//assigning in a cool way
+
+	var1 := 10
+	var2 := "Udit is a software developer"
+	fmt.Println("var1:", var1, "var2:", var2)
+
 }
