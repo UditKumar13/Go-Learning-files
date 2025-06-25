@@ -17,14 +17,14 @@ func calculate(a int, b int) (int, int) {
 	return sum, multiply
 }
 
-func divide(a int, b int) (float64, int) {
-	var error error
+func divide(a int, b int) (float64, int, error) {
+	var err error
 	if b == 0 {
-		error = errors.New("division by zero is not allowed")
-		fmt.Println(error)
-		return 0, 0 // Return zero values if division by zero
+		err = errors.New("division by zero is not allowed")
+		fmt.Println(err)
+		return 0, 0, err // Return zero values if division by zero
 	}
-	return float64(a) / float64(b), a % b
+	return float64(a) / float64(b), a % b, err
 }
 
 func main() {
@@ -82,6 +82,15 @@ func main() {
 	fmt.Printf("Sum of 5 and 10 is %v and Multiplication is %v\n", sum, multipart)
 
 	// Division function
-	divisionResult, remainder := divide(10, 2)
-	fmt.Printf("Division of 10 by 2 is: %.2f with a remainder of %d\n", divisionResult, remainder)
+	// handling errors also
+	divisionResult, remainder, err := divide(10, 2)
+	if err != nil {
+		fmt.Printf(err.Error())
+	} else if remainder == 0 {
+		fmt.Println("Division of 10 by 2 is:", divisionResult)
+	} else {
+		fmt.Println("Division of 10 by 2 is:", divisionResult, "with a remainder of:", remainder)
+	}
 }
+
+// The divide function handles division and returns an error if division by zero is attempted
