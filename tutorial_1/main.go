@@ -97,6 +97,15 @@ func main() {
 	// arrays : fixed length, same type elements, contiguous memory allocation
 	var intArray [5]int32 = [5]int32{1, 2, 3, 4, 5}
 	fmt.Println("Integer Array:", intArray)
+
+	fmt.Println(intArray[1:3]) // Slicing the array to get elements from index 1 to 2
+	intSlice := []int32{6, 7, 8}
+	fmt.Println("Slice of Integer Array:", intSlice)
+	fmt.Printf("Length of array is %v and cap is %v\n", len(intSlice), cap(intSlice))
+	intSlice = append(intSlice, 9) // Appending an element to the slice
+	fmt.Println("Slice after appending:", intSlice)
+	fmt.Printf("Length of array is %v and cap is %v\n", len(intSlice), cap(intSlice))
+
 }
 
 // The divide function handles division and returns an error if division by zero is attempted
