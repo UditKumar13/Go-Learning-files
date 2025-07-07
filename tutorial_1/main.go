@@ -106,6 +106,34 @@ func main() {
 	fmt.Println("Slice after appending:", intSlice)
 	fmt.Printf("Length of array is %v and cap is %v\n", len(intSlice), cap(intSlice))
 
+	// we will make a slice using make function
+	intSlice2 := make([]int32, 3, 5) // Create a slice with length 3 and capacity 5
+	fmt.Println("Slice created using make:", intSlice2)
+	fmt.Println("Length of intSlice2 is", len(intSlice2), "and capacity is", cap(intSlice2))
+
+	// Maps: key-value pairs, unordered, dynamic size
+	intMap := make(map[string]int)
+	intMap["one"] = 1
+	intMap["two"] = 2
+	intMap["three"] = 3
+	fmt.Println("Integer Map:", intMap)
+
+	for key, value := range intMap {
+		fmt.Printf("Key: %s, Value: %d\n", key, value)
+	}
+
+	// check value exist in a map or not
+	value, exists := intMap["two"]
+	if exists {
+		fmt.Printf("Value for key 'two': %d\n", value)
+	} else {
+		fmt.Println("Key 'two' does not exist in the map")
+	}
+
+	//delete a key from map
+	delete(intMap, "two") // it deletes the key "two" from the map by reference
+	fmt.Println("Map after deleting key 'two':", intMap)
+
 }
 
 // The divide function handles division and returns an error if division by zero is attempted
