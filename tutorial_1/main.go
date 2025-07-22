@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strings"
+	"time"
 	"unicode/utf8"
 )
 
@@ -122,6 +124,8 @@ func main() {
 		fmt.Printf("Key: %s, Value: %d\n", key, value)
 	}
 
+	// order is not guaranteed in maps, so the output order may vary
+
 	// check value exist in a map or not
 	value, exists := intMap["two"]
 	if exists {
@@ -134,6 +138,78 @@ func main() {
 	delete(intMap, "two") // it deletes the key "two" from the map by reference
 	fmt.Println("Map after deleting key 'two':", intMap)
 
-}
+	for i := 0; i < 5; i++ {
+		fmt.Println("This is a loop iteration:", i)
+	}
+	// same thing can be done using for range loop
+	for index, value := range intSlice {
+		fmt.Printf("Index: %d, Value: %d\n", index, value)
+	}
 
-// The divide function handles division and returns an error if division by zero is attempted
+	// Using time package to get current time
+	currentTime := time.Now()
+	fmt.Println("Current Time:", currentTime)
+
+	var n int = 1000000
+	var testSlice = []int{}            // without pre-allocating memory
+	var testSlice2 = make([]int, 0, n) // Pre-allocate memory for the slice
+
+	// let us see the time taken to append elements to the slice
+	startTime := time.Now()
+	for i := 0; i < n; i++ {
+		testSlice = append(testSlice, i)
+	}
+	elapsedTime := time.Since(startTime)
+	fmt.Println("Time taken to append elements (without pre-allocation):", elapsedTime)
+
+	// Now, let's do the same with the pre-allocated slice
+	startTime = time.Now()
+	for i := 0; i < n; i++ {
+		testSlice2 = append(testSlice2, i)
+	}
+	elapsedTime = time.Since(startTime)
+	fmt.Println("Time taken to append elements (with pre-allocation):", elapsedTime)
+	// The pre-allocated slice should be faster as it reduces the need for multiple memory allocations
+
+	// string manipulation
+	str3 := "Hello, World!"
+	fmt.Println("Original String:", str3)
+	str3 = str3 + " How are you?"
+	fmt.Println("Modified String:", str3)
+
+	// String to rune conversion
+	runeSlice := []rune(str3)
+	fmt.Println("String to Rune Slice:", runeSlice)
+	fmt.Println("Rune Slice as String:", string(runeSlice))
+
+	// more on string :
+
+	var mystring = "a resume"
+	var mystring2 = []rune("a resume")
+	var indexed = mystring[0] // This will give the byte value of the first character
+	fmt.Println("First character byte value:", indexed)
+
+	fmt.Printf("%v, %T\n", indexed, indexed) // %v for value, %T for type
+
+	fmt.Printf("value : %v, type : %T\n", mystring, mystring) // %v for value, %T for type
+	for i, v := range mystring {
+		fmt.Println(i, v) // Using fmt.Sprintf to get type as string
+	}
+
+	fmt.Printf("value : %v, type : %T\n", mystring2, mystring2) // %v for value, %T for type
+
+	for i, v := range mystring2 {
+		fmt.Println(i, v) // Using fmt.Sprintf to get type as string
+	}
+
+	// strings are immutable in Go, so you cannot change a character in a string directly
+	// mystring[0] = 'b' // This will cause a compilation error
+
+	fmt.Println("we can use string builder to modify a string")
+	var strBuilder strings.Builder
+	strBuilder.WriteString("Hello")
+	strBuilder.WriteString(", ")
+	strBuilder.WriteString("World!")
+	fmt.Println("Modified String:", strBuilder.String())
+
+}
