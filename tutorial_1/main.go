@@ -212,4 +212,8 @@ func main() {
 	strBuilder.WriteString("World!")
 	fmt.Println("Modified String:", strBuilder.String())
 
+	fmt.Println("To convert back to string from string builder we can use String() method of strings.Builder")
+	var converted_string = strBuilder.String()
+	fmt.Println("Converted String:", converted_string)
+
 }
