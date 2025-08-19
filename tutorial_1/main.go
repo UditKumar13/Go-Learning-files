@@ -216,4 +216,29 @@ func main() {
 	var converted_string = strBuilder.String()
 	fmt.Println("Converted String:", converted_string)
 
+	// struct and interfaces
+
+	//Struct
+	fmt.Printf("String and Interfaces")
+	type owner struct {
+		name string
+	}
+
+	type gasEngine struct {
+		horsePower int
+		cylinders  int
+		ownership  owner
+	}
+
+	var myEngine gasEngine = gasEngine{
+		horsePower: 150,
+		cylinders:  4,
+		ownership:  owner{"Udit Saini"},
+	}
+	// myEngine.horsePower = 150
+	// myEngine.cylinders = 4
+	fmt.Println("Gas Engine Horse Power:", myEngine.horsePower)
+	fmt.Println("Gase Engine Cylinders:", myEngine.cylinders)
+	fmt.Println("Gas Engine Owner Name:", myEngine.ownership.name)
+
 }
